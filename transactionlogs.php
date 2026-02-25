@@ -1,14 +1,6 @@
 <?php
-// session_start();
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "swiftpay";
-// $connection = new mysqli($servername, $username, $password, $database);
-// if ($connection->connect_error)
-// {
-//     die("Connection failed: " . $connection->connect_error);   
-// }
+session_start();
+include 'config.php';
 ?>
 
 <!DOCTYPE html>
@@ -35,21 +27,21 @@
                     <th class="table-headers">Amount</th>
                     <th class="table-headers">Timestamp</th>
                 </tr>
-                <!-- <?php
-                // $sql = "SELECT * FROM transactionLogs ORDER BY LogID ASC";
-                // $result = $connection->query($sql);
-                // if ($result->num_rows > 0)
-                // {
-                //     while($row = $result->fetch_assoc())
-                //     {
-                //         echo "<tr><td>" . $row["LogID"] . "</td><td>" . $row["SenderID"] . "</td><td>" . $row["ReceiverID"] . "</td><td>$" . number_format($row["Amount"], 2) . "</td><td>" . $row["Timestamp"] . "</td></tr>";
-                //     }
-                // }
-                // else
-                // {
-                //     echo "<tr><td colspan='5'>No transactions found</td></tr>";
-                // }
-                ?> -->
+                <?php
+                $sql = "SELECT * FROM transactionLogs ORDER BY LogID ASC";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0)
+                {
+                    while($row = $result->fetch_assoc())
+                    {
+                        echo "<tr><td>" . $row["LogID"] . "</td><td>" . $row["SenderID"] . "</td><td>" . $row["ReceiverID"] . "</td><td>$" . number_format($row["Amount"], 2) . "</td><td>" . $row["Timestamp"] . "</td></tr>";
+                    }
+                }
+                else
+                {
+                    echo "<tr><td colspan='5'>No transactions found</td></tr>";
+                }
+                ?>
             </th>
         </table>
     </div>
